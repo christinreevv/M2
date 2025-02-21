@@ -1,0 +1,110 @@
+CREATE TABLE space_missions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    mission_name VARCHAR(100),
+    launch_date DATE,
+    launch_site VARCHAR(100),
+    launch_latitude DOUBLE,
+    launch_longitude DOUBLE,
+    landing_date DATE,
+    landing_site VARCHAR(100),
+    landing_latitude DOUBLE,
+    landing_longitude DOUBLE,
+    spacecraft_name VARCHAR(100),
+    spacecraft_manufacturer VARCHAR(100),
+    crew_capacity INT,
+    crew_names TEXT,
+    crew_roles TEXT,
+    cosmonaut_name VARCHAR(100),
+    cosmonaut_birthdate DATE,
+    cosmonaut_rank VARCHAR(100),
+    cosmonaut_early_life TEXT,
+    cosmonaut_career TEXT,
+    cosmonaut_post_flight TEXT,
+    flight_duration_hours INT,
+    flight_duration_minutes INT,
+    parachute_landing BOOLEAN,
+    impact_velocity_mps DOUBLE
+);
+
+-- Вставка данных о миссиях
+INSERT INTO space_missions (
+    mission_name, launch_date, launch_site, launch_latitude, launch_longitude, 
+    landing_date, landing_site, landing_latitude, landing_longitude, 
+    spacecraft_name, spacecraft_manufacturer, crew_capacity, crew_names, crew_roles, 
+    cosmonaut_name, cosmonaut_birthdate, cosmonaut_rank, cosmonaut_early_life, 
+    cosmonaut_career, cosmonaut_post_flight, flight_duration_hours, 
+    flight_duration_minutes, parachute_landing, impact_velocity_mps
+) VALUES 
+-- Восток 1
+(
+    "Восток 1", "1961-04-12", "Космодром Байконур", 45.9650000, 63.3050000, 
+    "1961-04-12", "Смеловка", 51.2700000, 45.9970000, 
+    "Восток 3KA", "OKB-1", 1, "Юрий Гагарин", "Космонавт", 
+    "Юрий Гагарин", "1934-03-09", "Старший лейтенант", "Родился в Клушино, Россия.", 
+    "Отобран в отряд космонавтов в 1960 году...", "Стал международным героем.", 
+    1, 48, TRUE, 7
+),
+-- Аполлон-11
+(
+    "Аполлон-11", "1969-07-16", "Космический центр имени Кеннеди", 28.5721000, -80.6480000, 
+    "1969-07-20", "Море спокойствия", 0.6740000, 23.4720000, 
+    "Колумбия", "NASA", 3, "Нил Армстронг, Базз Олдрин, Майкл Коллинз", 
+    "Командир, Пилот лунного модуля, Пилот командного модуля", 
+    NULL, NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, NULL
+),
+-- Аполлон-17
+(
+    "Аполлон-17", "1972-12-07", "Космический центр имени Кеннеди", 28.5721000, -80.6480000, 
+    "1972-12-19", "Телец-Литтров", 20.1908000, 30.7717000, 
+    "Америка", "NASA", 3, "Евгений Сернан, Харрисон Шмитт, Рональд Эванс", 
+    "Командир, Пилот лунного модуля, Пилот командного модуля", 
+    NULL, NULL, NULL, NULL, NULL, NULL, 
+    NULL, NULL, NULL, NULL
+);
+
+
+
+
+CREATE TABLE missions (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    
+    -- Данные о миссии
+    mission_name VARCHAR(255) NOT NULL,
+    
+    -- Данные о запуске
+    launch_date DATE NOT NULL,
+    launch_site_name VARCHAR(255) NOT NULL,
+    launch_latitude DECIMAL(10,7) NOT NULL,
+    launch_longitude DECIMAL(10,7) NOT NULL,
+    
+    -- Данные о посадке
+    landing_date DATE NOT NULL,
+    landing_site_name VARCHAR(255) NOT NULL,
+    landing_latitude DECIMAL(10,7) NOT NULL,
+    landing_longitude DECIMAL(10,7) NOT NULL,
+    
+    -- Данные о корабле
+    spacecraft_name VARCHAR(255) NOT NULL,
+    manufacturer VARCHAR(255) NOT NULL,
+    crew_capacity INT NOT NULL,
+    
+    -- Данные о космонавтах
+    cosmonaut_1_name VARCHAR(255),
+    cosmonaut_1_role VARCHAR(255),
+    cosmonaut_2_name VARCHAR(255),
+    cosmonaut_2_role VARCHAR(255),
+    cosmonaut_3_name VARCHAR(255),
+    cosmonaut_3_role VARCHAR(255),
+
+    -- Дополнительные данные (например, для Гагарина)
+    cosmonaut_birthdate DATE,
+    cosmonaut_rank VARCHAR(255),
+    bio_early_life TEXT,
+    bio_career TEXT,
+    bio_post_flight TEXT,
+
+    -- Детали посадки
+    parachute_landing BOOLEAN,
+    impact_velocity_mps DECIMAL(5,2)
+);
